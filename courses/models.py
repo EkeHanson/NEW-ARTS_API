@@ -12,7 +12,7 @@ class Instructors(models.Model):
     number_of_students = models.IntegerField(blank=True, null=True)
     image = models.ImageField(upload_to='instructor_images')
     instructor_id = models.CharField(max_length=8, unique=True, blank=True, null=True)
-    courses_list = models.ManyToManyField("Course", related_name='instructors')  # Many-to-Many relationship
+    courses_list = models.ManyToManyField("Course", blank=True, null=True, related_name='instructors')  # Many-to-Many relationship
 
     def __str__(self):
         return f"{self.instructor_first_name} {self.instructor_last_name}"
