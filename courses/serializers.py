@@ -8,7 +8,7 @@ class InstructorSerializer(serializers.ModelSerializer):
 
 class CourseSerializer(serializers.ModelSerializer):
     duration = serializers.CharField(default=' 2 hours')
-    number_of_students = serializers.PositiveIntegerField(default= 0)
+    number_of_students = serializers.IntegerField(default= 0)
     class Meta:
         model = Course
         fields = '__all__'
