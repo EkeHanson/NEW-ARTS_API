@@ -30,11 +30,13 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     reset_token = models.CharField(max_length=100, blank=True, null=True)
     reset_token_expires = models.DateTimeField(null=True, blank=True)
+    phone = models.CharField(null=True, blank=True, max_length=15)
+    image = models.ImageField(blank=True, null=True, upload_to='user_images')
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     
     number_of_assessments = models.IntegerField(blank=True, null=True)
-    enrolled_courses = models.IntegerField(blank=True, null=True)
+    number_of_enrolled_courses = models.IntegerField(blank=True, null=True)
     completed_courses = models.IntegerField(blank=True, null=True)
     pending_courses = models.IntegerField(blank=True, null=True)
     ongoing_courses = models.IntegerField(blank=True, null=True)

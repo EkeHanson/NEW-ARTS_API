@@ -46,9 +46,10 @@ class Course(models.Model):
     duration = models.CharField(max_length=45)
     days_per_week = models.PositiveIntegerField()
     enrolled_courses = models.BooleanField(default=False)
-    number_of_students = models.IntegerField(blank=True, null=True)
+    number_of_students = models.IntegerField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='courses')
     instructor_id = models.ForeignKey(Instructors, on_delete=models.CASCADE, related_name='courses')
+    
    
 
     class Meta:

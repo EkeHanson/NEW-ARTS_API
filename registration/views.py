@@ -20,9 +20,16 @@ from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
 from .models import CustomUser, Course, EnrolledCourse
 
+
 def add_course_to_user(request, user_id, course_id):
     user = get_object_or_404(CustomUser, pk=user_id)
     course = get_object_or_404(Course, pk=course_id)
+    
+    # Assuming you want to set enrolled_courses to True for this course
+    course.enrolled_courses = True
+    course.number_of_students += 1
+    course.save()
+
     user.enrolled_courses.add(course)
     return JsonResponse({'message': 'Course added to user successfully'})
 
