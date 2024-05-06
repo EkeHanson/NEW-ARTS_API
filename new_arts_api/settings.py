@@ -92,7 +92,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgres://new_arts_db_hb2l_user:QUYzeppBrXfaD5OuSmz5SLSCW9yXgLd3@dpg-cos85ga1hbls73ffosog-a.oregon-postgres.render.com/new_arts_db_hb2l')
+DATABASES['default'] = dj_database_url.parse('postgres://new_arts_db_9jvw_user:ogBlvyLStYf3oXs8yPQYjIXm5bqAt0I0@dpg-cosc65q1hbls73fi1p90-a.oregon-postgres.render.com/new_arts_db_9jvw')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

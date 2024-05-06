@@ -82,6 +82,8 @@ class LoginView(APIView):
                 'refresh_token': str(refresh),
                 'user_id': user.id,  # Optionally, include user details in the response
                 'user_email': user.email,  # Optionally, include user details in the response
+                'user_type': user.user_type,  # Optionally, include user details in the response
+                # 'user_image': user.image,  # Optionally, include user details in the response
                 'user_first_name': user.first_name,  # Optionally, include user details in the response
                 'user_last_name': user.last_name,  # Optionally, include user details in the response
                 'user_password': user.password,  # Optionally, include user details in the response
