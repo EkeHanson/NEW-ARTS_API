@@ -31,7 +31,7 @@ class CustomUser(AbstractUser):
     reset_token = models.CharField(max_length=100, blank=True, null=True)
     reset_token_expires = models.DateTimeField(null=True, blank=True)
     phone = models.CharField(null=True, blank=True, max_length=15)
-    image = models.ImageField(blank=True, null=True, upload_to='user_images')
+    # image = models.ImageField(blank=True, null=True, upload_to='user_images')
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     

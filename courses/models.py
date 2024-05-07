@@ -27,7 +27,7 @@ def generate_instructor_id(sender, instance, *args, **kwargs):
     instance.instructor_id = random_id
 
 class Category(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     image = models.ImageField(upload_to='category_images')
     details = models.TextField()
 

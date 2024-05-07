@@ -7,6 +7,7 @@ from rest_framework import status
 from .serializers import CustomUserSerializer
 from .models import CustomUser
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
@@ -39,7 +40,7 @@ def remove_course_from_user(request, user_id, course_id):
     user.enrolled_courses.remove(course)
     return JsonResponse({'message': 'Course removed from user successfully'})
 
-def get_user_courses(request, user_id):
+def get_user_courses(request, user_id): 
     user = get_object_or_404(CustomUser, pk=user_id)
     user_courses = user.enrolled_courses.all()
     course_data = [{'title': course.title, 'details': course.details} for course in user_courses]
@@ -71,26 +72,30 @@ class LoginView(APIView):
         email = serializer.validated_data['email']
         password = serializer.validated_data['password']
 
-        # Your authentication logic here, for example:
+        print("Received email:", email)
+        print("Received password:", password)
+
+        # Authenticate using email and password
         user = authenticate(email=email, password=password)
 
         if user:
-            # If the authentication is successful, generate JWT tokens
+            print("User authenticated successfully:", user)
+            # If authentication is successful, generate JWT tokens
             refresh = RefreshToken.for_user(user)
             return Response({
                 'access_token': str(refresh.access_token),
                 'refresh_token': str(refresh),
-                'user_id': user.id,  # Optionally, include user details in the response
-                'user_email': user.email,  # Optionally, include user details in the response
-                'user_type': user.user_type,  # Optionally, include user details in the response
-                # 'user_image': user.image,  # Optionally, include user details in the response
-                'user_first_name': user.first_name,  # Optionally, include user details in the response
-                'user_last_name': user.last_name,  # Optionally, include user details in the response
-                'user_password': user.password,  # Optionally, include user details in the response
+                'user_id': user.id,
+                'user_email': user.email,
+                'user_type': user.user_type,
+                'user_first_name': user.first_name,
+                'user_last_name': user.last_name
                 # Add more user details if needed
             })
         else:
+            print("Authentication failed for email:", email)
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
 
 @api_view(['POST'])
 def send_registration_email(request):

@@ -10,7 +10,6 @@ class LoginSerializer(serializers.Serializer):
 
 class CustomUserSerializer(serializers.ModelSerializer):
     user_type = serializers.CharField(default='client')
-    image = serializers.ImageField()
     password = serializers.CharField(min_length=8, write_only=True)
 
     class Meta:

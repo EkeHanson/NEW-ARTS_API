@@ -92,7 +92,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgres://new_arts_db_9jvw_user:ogBlvyLStYf3oXs8yPQYjIXm5bqAt0I0@dpg-cosc65q1hbls73fi1p90-a.oregon-postgres.render.com/new_arts_db_9jvw')
+# DATABASES['default'] = dj_database_url.parse('postgres://new_arts_db_sp4n_user:7w8poglw6KyM6DNTn73cQkF8ETdFOXgr@dpg-cosd3na0si5c739tgmg0-a.oregon-postgres.render.com/new_arts_db_sp4n')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -103,6 +103,8 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'registration.CustomUser'
+
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=5),

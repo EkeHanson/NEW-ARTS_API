@@ -31,6 +31,22 @@ def remove_instructor_from_course(request, instructor_id, course_id):
     instructor.courses.remove(course)
     return JsonResponse({'message': f'Instructor "{instructor.instructor_first_name} {instructor.instructor_last_name}" removed from course "{course.title}" successfully'})
 
+
+class CourseByCategoryAPIView(APIView):
+    def get(self, request, category_id):
+        try:
+            # Get the category object
+            category = Category.objects.get(pk=category_id)
+            # Get all courses related to the category
+            courses = Course.objects.filter(category=category)
+            # Serialize the courses data
+            serializer = CourseSerializer(courses, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Category.DoesNotExist:
+            return Response({"message": "Category not found"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"message": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
 class EnrolledCourseAPIView(APIView):
     def get(self, request):
         courses = Course.objects.filter(enrolled_courses=True)
