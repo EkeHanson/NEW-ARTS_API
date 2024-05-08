@@ -15,9 +15,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*=x5#a_e8at@yrvp0nmz=3*rkyc^2s(_24b*+pr)=_y6vyaxnr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['new-arts-api.onrender.com', '127.0.0.1', 'localhost', ]
+ALLOWED_HOSTS = ['new-arts-api.onrender.com', '127.0.0.1', 'localhost','https://artstraining.co.uk/' ]
 
 
 # Application definition
@@ -85,14 +85,25 @@ WSGI_APPLICATION = 'new_arts_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',         # Name of your PostgreSQL database
+        'USER': 'postgres',         # PostgreSQL username
+        'PASSWORD': 'TlASehOdbdRvCLQuMVjxMGBcYXJoCrKX',
+        'HOST': 'monorail.proxy.rlwy.net',        
+        'PORT': '26160',   
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgres://new_arts_db_sp4n_user:7w8poglw6KyM6DNTn73cQkF8ETdFOXgr@dpg-cosd3na0si5c739tgmg0-a.oregon-postgres.render.com/new_arts_db_sp4n')
+# DATABASES['default'] = dj_database_url.parse('postgres://new_arts_db_sp4n_user:7w8poglw6KyM6DNTn73cQkF8ETdFOXgr@dpg-cosd3na0si5c739tgmg0-a.oregon-postgres.render.com/new_arts_db_sp4n')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -103,8 +114,6 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'registration.CustomUser'
-
-
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=5),
