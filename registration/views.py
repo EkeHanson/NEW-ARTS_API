@@ -109,10 +109,11 @@ def send_registration_email(request):
             subject = 'Registration Confirmation'
             message = f'''
             Please click the following link to continue registration:
-                https://new-arts-website.vercel.app/complete-signup.html?email={email}
-                            '''
+            <a href="https://new-arts-website.vercel.app/complete-signup.html?email={email}">Complete Registration</a>
+            '''
             recipient_list = [email]
-            send_mail(subject, message, None, recipient_list)
+            from_email = 'Do not reply Admin@artstraining.co.uk '  # Set the no-reply email address
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=message)
             print('Email sent successfully')
             return Response({'message': 'Email sent successfully'})
         else:

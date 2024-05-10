@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*=x5#a_e8at@yrvp0nmz=3*rkyc^2s(_24b*+pr)=_y6vyaxnr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['new-arts-api.onrender.com', '127.0.0.1', 'localhost','https://artstraining.co.uk/' ]
 
@@ -123,7 +123,7 @@ SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
-# Email configuration
+# # Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Your SMTP server address
 EMAIL_PORT = 587  # Your SMTP server port (587 is the default for SMTP with TLS)
@@ -131,6 +131,17 @@ EMAIL_USE_TLS = True  # Whether to use TLS (True by default)
 EMAIL_HOST_USER = 'ekenehanson@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'pduw cpmw dgoq adrp'  # Your email password or app-specific password if using Gmail, etc.
 DEFAULT_FROM_EMAIL = 'ekenehanson@gmail.com'  # The default email address to use for sending emails
+EMAIL_DEBUG = True
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtpout.secureserver.net.'  # Replace with GoDaddy SMTP server address
+# EMAIL_PORT = 465  # Replace with GoDaddy SMTP port
+# EMAIL_USE_TLS = True  # Replace with GoDaddy TLS requirement
+# EMAIL_HOST_USER = 'noreply@artstraining.co.uk'  # Replace with your GoDaddy email address
+# EMAIL_HOST_PASSWORD = 'qM8SEti3_y'  # Replace with your GoDaddy email password or app-specific password
+# DEFAULT_FROM_EMAIL = 'noreply@artstraining.co.uk'  # Replace with your GoDaddy email address
+
+# training@artstraining.co.uk
 
 
 # Password validation
