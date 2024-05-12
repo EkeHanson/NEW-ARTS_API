@@ -124,13 +124,24 @@ SIMPLE_JWT = {
 }
 
 # # Email configuration
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'  # Your SMTP server address
+# EMAIL_PORT = 587  # Your SMTP server port (587 is the default for SMTP with TLS)
+# EMAIL_USE_TLS = True  # Whether to use TLS (True by default)
+# EMAIL_HOST_USER = 'ekenehanson@gmail.com'  # Your email address
+# EMAIL_HOST_PASSWORD = 'pduw cpmw dgoq adrp'  # Your email password or app-specific password if using Gmail, etc.
+# DEFAULT_FROM_EMAIL = 'ekenehanson@gmail.com'  # The default email address to use for sending emails
+# EMAIL_DEBUG = True
+
+# # Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Your SMTP server address
-EMAIL_PORT = 587  # Your SMTP server port (587 is the default for SMTP with TLS)
-EMAIL_USE_TLS = True  # Whether to use TLS (True by default)
-EMAIL_HOST_USER = 'ekenehanson@gmail.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'pduw cpmw dgoq adrp'  # Your email password or app-specific password if using Gmail, etc.
-DEFAULT_FROM_EMAIL = 'ekenehanson@gmail.com'  # The default email address to use for sending emails
+EMAIL_PORT = 465  # Your SMTP server port (587 is the default for SMTP with TLS)
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'training.arts.co.uk@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'docg qver jlgv ywyy'  # Your email password or app-specific password if using Gmail, etc.
+DEFAULT_FROM_EMAIL = 'training.arts.co.uk@gmail.com'  # The default email address to use for sending emails
 EMAIL_DEBUG = True
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

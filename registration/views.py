@@ -99,6 +99,7 @@ class LoginView(APIView):
 
 @api_view(['POST'])
 def send_registration_email(request):
+#docg qver jlgv ywyy
     if request.method == 'POST':
         print("Email Tag!")
         print(request.data)  # Debug statement to print request.data
@@ -108,8 +109,16 @@ def send_registration_email(request):
             # You can customize the email subject and message as needed
             subject = 'Registration Confirmation'
             message = f'''
+            Welcome to signing up with the Arts Training
+            <br><br>
+
             Please click the following link to continue registration:
-            <a href="https://new-arts-website.vercel.app/complete-signup.html?email={email}">Complete Registration</a>
+            <a href='https://artstraining.co.uk/complete-signup.html?email={email}'>Complete Registration</a>
+
+
+            <br><br>
+            Thanks from Arts Training
+            
             '''
             recipient_list = [email]
             from_email = 'Do not reply Admin@artstraining.co.uk '  # Set the no-reply email address
