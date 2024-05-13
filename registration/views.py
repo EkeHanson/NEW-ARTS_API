@@ -104,22 +104,72 @@ def send_registration_email(request):
         print("Email Tag!")
         print(request.data)  # Debug statement to print request.data
         email = request.data.get('email')  # Get email from JSON data
+        first_name = request.data.get('first_name')  # Get email from JSON data
+        last_name = request.data.get('last_name')  # Get email from JSON data
         print(email)  # Debug statement to print email
         if email:
             # You can customize the email subject and message as needed
             subject = 'Registration Confirmation'
             message = f'''
-            Welcome to signing up with the Arts Training
-            <br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Confirmation</title>
+    <style>
+        /* Define your CSS styles here */
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }}
+        .header {{
+            text-align: center;
+            margin-bottom: 20px;
+        }}
+        .content {{
+            padding: 20px;
+        }}
+        .button {{
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3>Welcome to The Arts Training</h3>
+            <img src="https://artstraining.co.uk/img/site-logo.png" alt="Arts Training Logo" width="150">
+        </div>
+        <div class="content">
+            <h3>Hi {first_name},<h3/>
+            <p>Thank you for signing up with Arts Training.<br> Please click the button below to complete your registration.</p>
+            <a href='https://artstraining.co.uk/complete-signup.html?first_name={first_name}&last_name={last_name}&email={email}' class="button">Complete Registration</a>
+            <p>If you did not request for this registration, please ignore this email.</p>
 
-            Please click the following link to continue registration:
-            <a href='https://artstraining.co.uk/complete-signup.html?email={email}'>Complete Registration</a>
+            <p>Thank you, <br> The Arts Training Team</p>
+        </div>
+    </div>
+</body>
+</html>
+'''
 
-
-            <br><br>
-            Thanks from Arts Training
-            
-            '''
             recipient_list = [email]
             from_email = 'Do not reply Admin@artstraining.co.uk '  # Set the no-reply email address
             send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=message)
