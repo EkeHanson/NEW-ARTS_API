@@ -94,14 +94,24 @@ WSGI_APPLICATION = 'new_arts_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',         # Name of your PostgreSQL database
-        'USER': 'postgres',         # PostgreSQL username
-        'PASSWORD': 'TlASehOdbdRvCLQuMVjxMGBcYXJoCrKX',
-        'HOST': 'monorail.proxy.rlwy.net',        
-        'PORT': '26160',   
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'new_arts_websiteDB',         # Name of your PostgreSQL database
+        'USER': 'ekenehanson',         # PostgreSQL username
+        'PASSWORD': '1234567890qwerty1234567890',
+        'HOST': '92.205.171.87',        
+        'PORT': '3306',   
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',         # Name of your PostgreSQL database
+#         'USER': 'postgres',         # PostgreSQL username
+#         'PASSWORD': 'TlASehOdbdRvCLQuMVjxMGBcYXJoCrKX',
+#         'HOST': 'monorail.proxy.rlwy.net',        
+#         'PORT': '26160',   
+#     }
+# }
 
 # DATABASES['default'] = dj_database_url.parse('postgres://new_arts_db_sp4n_user:7w8poglw6KyM6DNTn73cQkF8ETdFOXgr@dpg-cosd3na0si5c739tgmg0-a.oregon-postgres.render.com/new_arts_db_sp4n')
 
@@ -142,17 +152,20 @@ EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'training.arts.co.uk@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'docg qver jlgv ywyy'  # Your email password or app-specific password if using Gmail, etc.
 DEFAULT_FROM_EMAIL = 'training.arts.co.uk@gmail.com'  # The default email address to use for sending emails
-EMAIL_DEBUG = True
+# EMAIL_DEBUG = True
 
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtpout.secureserver.net.'  # Replace with GoDaddy SMTP server address
-# EMAIL_PORT = 465  # Replace with GoDaddy SMTP port
-# EMAIL_USE_TLS = True  # Replace with GoDaddy TLS requirement
-# EMAIL_HOST_USER = 'noreply@artstraining.co.uk'  # Replace with your GoDaddy email address
-# EMAIL_HOST_PASSWORD = 'qM8SEti3_y'  # Replace with your GoDaddy email password or app-specific password
-# DEFAULT_FROM_EMAIL = 'noreply@artstraining.co.uk'  # Replace with your GoDaddy email address
-
-# training@artstraining.co.uk
+# EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST='smtpout.secureserver.net'
+# EMAIL_PORT=465
+# EMAIL_USE_SSL=True
+# EMAIL_USE_TLS=False
+# EMAIL_HOST_USER='training@artstraining.co.uk'
+# EMAIL_HOST_PASSWORD='%EBpd76ZrhUC'
+# ADMIN_EMAIL='training@artstraining.co.uk'
+#EMail Password: %EBpd76ZrhUC
+#gvgmufyo4pr7
+#bVv$%09eY7#n
+# sendgrid Rovery Code: LXKNM2FGV9LFC98NXBTH21GW
 
 
 # Password validation
@@ -200,4 +213,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = 'Strict'
-
