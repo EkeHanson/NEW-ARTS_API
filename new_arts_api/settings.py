@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*=x5#a_e8at@yrvp0nmz=3*rkyc^2s(_24b*+pr)=_y6vyaxnr'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -95,10 +95,10 @@ WSGI_APPLICATION = 'new_arts_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'new_arts_websiteDB',         # Name of your PostgreSQL database
-        'USER': 'ekenehanson',         # PostgreSQL username
-        'PASSWORD': '1234567890qwerty1234567890',
-        'HOST': '92.205.171.87',        
+        'NAME': os.environ.get('DBNAME'),        # Name of your PostgreSQL database
+        'USER': os.environ.get('DBUSER'),       # PostgreSQL username
+        'PASSWORD': os.environ.get('DBPASSWORD'),
+        'HOST': os.environ.get('DBHOST'),    
         'PORT': '3306',   
     }
 }
@@ -151,9 +151,9 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'training.arts.co.uk@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'docg qver jlgv ywyy'  # Your email password or app-specific password if using Gmail, etc.
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # Your email password or app-specific password if using Gmail, etc.
 DEFAULT_FROM_EMAIL = 'training.arts.co.uk@gmail.com'  # The default email address to use for sending emails
 # EMAIL_DEBUG = True
-
 # EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST='smtpout.secureserver.net'
 # EMAIL_PORT=465
