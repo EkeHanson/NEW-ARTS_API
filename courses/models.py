@@ -42,7 +42,7 @@ class Course(models.Model):
     title = models.CharField(max_length=200)
     details = models.TextField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    course_code = models.CharField(max_length=10)
+    course_code = models.CharField(max_length=25)
     duration = models.CharField(max_length=45)
     days_per_week = models.PositiveIntegerField()
     enrolled_courses = models.BooleanField(default=False)
