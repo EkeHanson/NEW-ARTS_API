@@ -40,11 +40,32 @@ def remove_course_from_user(request, user_id, course_id):
     user.enrolled_courses.remove(course)
     return JsonResponse({'message': 'Course removed from user successfully'})
 
+from django.core.serializers import serialize
+
 def get_user_courses(request, user_id): 
     user = get_object_or_404(CustomUser, pk=user_id)
     user_courses = user.enrolled_courses.all()
-    course_data = [{'title': course.title, 'details': course.details} for course in user_courses]
+    course_data = []
+    for course in user_courses:
+        course_info = {
+            'courseId': course.instructor_id_id,  # Use the ID of the instructor instead of the object
+            'title': course.title,
+            'details': course.details,
+            'days_per_week': course.days_per_week,
+            'duration': course.duration,
+        }
+        # Get instructor details
+        instructor = course.instructor_id
+        if instructor:  # Check if instructor exists
+            course_info['instructor'] = {
+                'id': instructor.id,
+                'first_name': instructor.instructor_first_name,
+                'instructor_image_url': instructor.image.url if instructor.image else None,
+                'last_name': instructor.instructor_last_name,
+            }
+        course_data.append(course_info)
     return JsonResponse({'courses': course_data})
+
 
 def get_users_registered_for_course(request, course_id):
     course = get_object_or_404(Course, pk=course_id)

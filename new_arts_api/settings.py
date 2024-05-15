@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # created apps
     'registration',
     'courses',
+    'assessments',
 
     # installed apps
     # 'allauth',
