@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'django-insecure-*=x5#a_e8at@yrvp0nmz=3*rkyc^2s(_24b*+pr)=_y6vyaxnr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,23 +86,23 @@ WSGI_APPLICATION = 'new_arts_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DBNAME'),        # Name of your PostgreSQL database
-        'USER': os.environ.get('DBUSER'),       # PostgreSQL username
-        'PASSWORD': os.environ.get('DBPASSWORD'),
-        'HOST': os.environ.get('DBHOST'),    
-        'PORT': '3306',   
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'new_arts_websiteDB',         # Name of your PostgreSQL database
+#         'USER': 'ekenehanson',         # PostgreSQL username
+#         'PASSWORD': '1234567890qwerty1234567890',
+#         'HOST': '92.205.171.87',        
+#         'PORT': '3306',   
+#     }
+# }
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -145,6 +145,21 @@ SIMPLE_JWT = {
 # EMAIL_DEBUG = True
 
 # # Email configuration
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.office365.com'  # Your SMTP server address
+# EMAIL_PORT = 58  # Your SMTP server port (587 is the default for SMTP with TLS)
+# EMAIL_USE_TLS = False
+# EMAIL_USE_SSL = False
+# EMAIL_HOST_USER = 'ekenehanson@gmail.com'  # Your email address
+# EMAIL_HOST_PASSWORD = 'yjmglxzktxbgaxsp'  # Your email password or app-specific password if using Gmail, etc.
+# DEFAULT_FROM_EMAIL = 'ekenehanson@gmail.com'  # The default email address to use for sending emails
+# EMAIL_DEBUG = True
+
+
+#Your new code is 4PSC6-34552-TCL2Y-X7U9V-M5QQ
+
+
+# # # Email configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Your SMTP server address
 EMAIL_PORT = 465  # Your SMTP server port (587 is the default for SMTP with TLS)
@@ -152,9 +167,9 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'training.arts.co.uk@gmail.com'  # Your email address
 EMAIL_HOST_PASSWORD = 'docg qver jlgv ywyy'  # Your email password or app-specific password if using Gmail, etc.
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # Your email password or app-specific password if using Gmail, etc.
 DEFAULT_FROM_EMAIL = 'training.arts.co.uk@gmail.com'  # The default email address to use for sending emails
-# EMAIL_DEBUG = True
+EMAIL_DEBUG = True
+
 # EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST='smtpout.secureserver.net'
 # EMAIL_PORT=465
@@ -214,3 +229,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
 CSRF_COOKIE_SAMESITE = 'Strict'
+
+
+
+

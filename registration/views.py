@@ -165,7 +165,7 @@ def send_registration_email(request):
         .button {{
             display: inline-block;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #87ceeb;
             color: #ffffff;
             text-decoration: none;
             border-radius: 5px;
@@ -275,19 +275,74 @@ def generate_reset_token():
 def send_reset_email(user):
     reset_token = generate_reset_token()
     user.reset_token = reset_token
-    print( user.reset_token)
-    user.reset_token_expires = timezone.now() + datetime.timedelta(hours=3)  # Token expires in 1 hour
+    print(user.reset_token)
+    user.reset_token_expires = timezone.now() + datetime.timedelta(hours=10)  # Token expires in 3 hours
     user.save()
-    reset_url = f'https://new-arts-website.vercel.app/forgot-password.html?reset_token={reset_token}&email={user.email}'
-    # Assuming you have imported send_mail function properly
-    send_mail(
-        subject='Password Reset',
-        message=f'''Please click the following link to reset your password: {reset_url}
-                  or copy this reset_token {reset_token} to the application''',
-        from_email='ekenehanson@gmail.com',  # Update with your email address
-        recipient_list=[user.email],  # Send email to the user's email address
-        fail_silently=False,
-    )
+    reset_url = f'https://artstraining.co.uk/forgot-password-main.html?reset_token={reset_token}&amp;email={user.email}'
+    
+    subject = 'Password Reset'
+    
+    message =  f'''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Confirmation</title>
+    <style>
+        /* Define your CSS styles here */
+        body {{
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }}
+        .container {{
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }}
+        .header {{
+            text-align: center;
+            margin-bottom: 20px;
+        }}
+        .content {{
+            padding: 20px;
+        }}
+        .button {{
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #87ceeb;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h3>Welcome to The Arts Training</h3>
+            <img src="https://artstraining.co.uk/img/site-logo.png" alt="Arts Training Logo" width="150">
+        </div>
+        <div class="content">
+            <h3>Hi {user.first_name},<h3/>
+            <br>
+            <a href='{reset_url}' class="button">Click this link to reset your password</a>
+            <p>This link will expire in 1 hour</p>
+        </div>
+    </div>
+</body>
+</html>'''
+
+    from_email = 'Do not reply'  # Update with your email address
+    recipient_list = [user.email]  # Send email to the user's email address
+
+    send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=message)
 
 class PasswordResetAPIView(APIView):
     def post(self, request):
